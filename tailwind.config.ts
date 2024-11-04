@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      touchAction: {
+        manipulation: "manipulation"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
