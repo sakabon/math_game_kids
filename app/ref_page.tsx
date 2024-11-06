@@ -3,8 +3,21 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="title-container flex min-h-screen flex-col items-center justify-end p-4 pb-5">
-      <div className="w-full max-w-md bg-white/20 backdrop-blur-sm rounded-lg shadow-md p-6">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-blue-50">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+        <div className="flex justify-center mb-4">
+          <Image
+            src="/images/ganzi.png"
+            alt=""
+            width={1000}
+            height={1000}
+            priority
+            className="rounded-lg"
+          />
+        </div>
+        <h1 className="text-3xl font-bold text-center mb-6 text-blue-800">
+          岩爺の計算ゲーム
+        </h1>
         <div className="space-y-4">
           <Link
             href="/normal-mode"
