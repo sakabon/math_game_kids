@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import NumberPad from './NumberPad';
+import NumberPad from "./NumberPad";
 import { useCalculation } from "../hooks/useCalculation";
 
 const TimeAttackMode = () => {
@@ -81,15 +81,14 @@ const TimeAttackMode = () => {
             <p className="text-6xl font-bold mb-4 text-center text-gray-700">
               {problem} = ?
             </p>
-            
+
             <NumberPad
               onNumberClick={handleNumberClick}
               onDeleteClick={handleDeleteClick}
               onEnterClick={handleCheckAnswer}
               answer={answer}
+              result={result}
             />
-            
-            <p className="mt-4 text-center text-lg text-gray-700">{result}</p>
           </>
         )}
 
@@ -98,9 +97,7 @@ const TimeAttackMode = () => {
             <h2 className="text-2xl font-bold mb-4 text-blue-800">
               タイムアップ！
             </h2>
-            <p className="text-xl mb-4 font-bold">
-              20秒間で {score}問 正解！
-            </p>
+            <p className="text-xl mb-4 font-bold">20秒間で {score}問 正解！</p>
             <button
               onClick={startGame}
               className="bg-green-500 text-white p-3 rounded text-xl hover:bg-green-600 transition-colors"
