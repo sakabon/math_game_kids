@@ -68,9 +68,9 @@ const NormalMode = () => {
               onDeleteClick={handleDeleteClick}
               onEnterClick={handleCheckAnswer}
               answer={answer}
-              result={result}
             />
 
+            <p className="mt-4 text-center text-lg text-gray-700">{result}</p>
             <p className="mt-2 text-center text-lg text-blue-800">{score} 点</p>
           </>
         ) : (

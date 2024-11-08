@@ -4,10 +4,7 @@ export const useCalculation = () => {
   const [problem, setProblem] = useState("");
   const [answer, setAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [result, setResult] = useState<{
-    isCorrect: boolean;
-    show: boolean;
-  }>({ isCorrect: false, show: false });
+  const [result, setResult] = useState("");
 
   const generateProblem = () => {
     const operations = ["+", "-", "×", "÷"];
@@ -39,13 +36,6 @@ export const useCalculation = () => {
     setProblem(`${num1} ${operation} ${num2}`);
   };
 
-  // 結果表示を一定時間後に消す
-  const hideResult = () => {
-    setTimeout(() => {
-      setResult(prev => ({ ...prev, show: false }));
-    }, 1000);
-  };
-
   const checkAnswer = (callback?: () => void) => {
     if (!answer) return;
 
@@ -67,20 +57,14 @@ export const useCalculation = () => {
         break;
     }
 
-    const isCorrect = parseInt(answer) === correctAnswer;
-    
-    setResult({
-      isCorrect,
-      show: true
-    });
-
-    if (isCorrect) {
+    if (parseInt(answer) === correctAnswer) {
       setScore(prev => prev + 1);
+      setResult("正解！");
+    } else {
+      setResult(`残念！正解は ${correctAnswer} でした。`);
     }
-
     setAnswer("");
     generateProblem();
-    hideResult();
     
     if (callback) {
       callback();
@@ -100,7 +84,7 @@ export const useCalculation = () => {
   const resetCalculation = () => {
     setScore(0);
     setAnswer("");
-    setResult({ isCorrect: false, show: false });
+    setResult("");
     generateProblem();
   };
 

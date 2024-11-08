@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useState } from "react";
 
 interface NumberPadProps {
@@ -6,10 +5,6 @@ interface NumberPadProps {
   onDeleteClick: () => void;
   onEnterClick: () => void;
   answer: string;
-  result?: {
-    isCorrect: boolean;
-    show: boolean;
-  };
 }
 
 const NumberPad = ({
@@ -17,7 +12,6 @@ const NumberPad = ({
   onDeleteClick,
   onEnterClick,
   answer,
-  result,
 }: NumberPadProps) => {
   const [isMoving, setIsMoving] = useState(false);
 
@@ -39,23 +33,10 @@ const NumberPad = ({
   return (
     <div className="w-full max-w-md">
       {/* 入力された数字を表示 */}
-      <div className="relative w-full mb-4">
-        <div className="w-full p-3 text-4xl font-bold border rounded text-center bg-white">
-          {answer || "0"}
-        </div>
-        {/* 結果画像 */}
-        {result?.show && (
-          <div className="absolute -top-10 -right-4 w-32 h-32">
-            <Image
-              src={result.isCorrect ? "/images/correct_ganzi.png" : "/images/incorrect_ganzi.png"}
-              alt={result.isCorrect ? "正解" : "不正解"}
-              width={128}
-              height={128}
-              // className="animate-bounce"
-            />
-          </div>
-        )}
+      <div className="w-full p-3 text-4xl font-bold border rounded mb-4 text-center bg-white">
+        {answer || "0"}
       </div>
+
       {/* 数字パッド */}
       <div className="grid grid-cols-3 gap-2">
         {[7, 8, 9, 4, 5, 6, 1, 2, 3].map((num) => (
