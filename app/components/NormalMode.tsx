@@ -61,7 +61,7 @@ const NormalMode = () => {
             <p className="text-lg text-center text-gray-600 mb-2">
               問題 {questionCount + 1} / {TOTAL_QUESTIONS}
             </p>
-            <p className="text-5xl font-bold mb-4 text-center text-gray-700">
+            <p className="text-4xl font-bold mb-4 text-center text-gray-700">
               {problem} = ?
             </p>
             <NumberPad

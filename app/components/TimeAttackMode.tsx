@@ -92,7 +92,7 @@ const TimeAttackMode = () => {
               <p className="text-2xl text-gray-700">残り時間: {timeLeft}秒</p>
               <p className="text-2xl text-blue-800">スコア: {score}</p>
             </div>
-            <p className="text-5xl font-bold mb-4 text-center text-gray-700">
+            <p className="text-4xl font-bold mb-4 text-center text-gray-700">
               {problem} = ?
             </p>
 
