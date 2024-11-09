@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import NumberPad from "./NumberPad";
 import { useCalculation } from "../hooks/useCalculation";
+import Image from "next/image";
 
 const NormalMode = () => {
   const {
@@ -78,6 +79,16 @@ const NormalMode = () => {
             <h2 className="text-2xl font-bold mb-4 text-blue-800">
               ゲーム終了！
             </h2>
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/fire_ganzi.png"
+                alt="タイムアタック"
+                width={300}
+                height={300}
+                className="animate-pluse"
+                priority
+              />
+            </div>
             <p className="text-xl mb-4 font-bold">
               20問中 {score}問 正解！
               <br />

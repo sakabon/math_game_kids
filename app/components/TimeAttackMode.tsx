@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import NumberPad from "./NumberPad";
 import { useCalculation } from "../hooks/useCalculation";
+import Image from "next/image";
 
 const TimeAttackMode = () => {
   const {
@@ -61,6 +62,19 @@ const TimeAttackMode = () => {
         </h1>
 
         {!isPlaying && !isGameOver && (
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/images/fire_ganzi.png"
+              alt="タイムアタック"
+              width={300}
+              height={300}
+              className="animate-pluse"
+              priority
+            />
+          </div>
+        )}
+
+        {!isPlaying && !isGameOver && (
           <div className="text-center">
             <p className="text-xl mb-4">20秒間で何問解けるかな？</p>
             <button
@@ -97,6 +111,16 @@ const TimeAttackMode = () => {
             <h2 className="text-2xl font-bold mb-4 text-blue-800">
               タイムアップ！
             </h2>
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/fire_ganzi.png"
+                alt="タイムアタック"
+                width={300}
+                height={300}
+                className="animate-pluse"
+                priority
+              />
+            </div>
             <p className="text-xl mb-4 font-bold">20秒間で {score}問 正解！</p>
             <button
               onClick={startGame}
