@@ -40,7 +40,7 @@ const NumberPad = ({
     <div className="w-full max-w-md">
       {/* 入力された数字を表示 */}
       <div className="relative w-full mb-4">
-        <div className="w-full p-3 text-4xl font-bold border rounded text-center bg-white">
+        <div className="w-full p-3 text-4xl font-bold border rounded text-center bg-white text-gray-900">
           {answer || "0"}
         </div>
         {/* 結果画像 */}

@@ -58,10 +58,10 @@ const NormalMode = () => {
 
         {!isGameOver ? (
           <>
-            <p className="text-lg text-center text-gray-600 mb-2">
+            <p className="text-lg text-center text-gray-900 mb-2">
               問題 {questionCount + 1} / {TOTAL_QUESTIONS}
             </p>
-            <p className="text-4xl font-bold mb-4 text-center text-gray-700">
+            <p className="text-4xl font-bold mb-4 text-center text-gray-900">
               {problem} = ?
             </p>
             <NumberPad
@@ -71,8 +71,6 @@ const NormalMode = () => {
               answer={answer}
               result={result}
             />
-
-            <p className="mt-2 text-center text-lg text-blue-800">{score} 点</p>
           </>
         ) : (
           <div className="text-center">
@@ -85,7 +83,7 @@ const NormalMode = () => {
                 alt="タイムアタック"
                 width={300}
                 height={300}
-                className="animate-pluse"
+                // className="animate-pluse"
                 priority
               />
             </div>

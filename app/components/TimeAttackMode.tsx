@@ -22,6 +22,14 @@ const TimeAttackMode = () => {
   const [timeLeft, setTimeLeft] = useState(20);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("timeAttackHighScore");
+    if (saved) {
+      setHighScore(parseInt(saved));
+    }
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -32,9 +40,14 @@ const TimeAttackMode = () => {
     } else if (timeLeft === 0 && isPlaying) {
       setIsGameOver(true);
       setIsPlaying(false);
+      // ゲーム終了時に最高得点を更新
+      if (score > highScore) {
+        setHighScore(score);
+        localStorage.setItem('timeAttackHighScore', score.toString());
+      }
     }
     return () => clearInterval(timer);
-  }, [timeLeft, isPlaying]);
+  }, [timeLeft, isPlaying, score, highScore]);
 
   const startGame = () => {
     setTimeLeft(20);
@@ -61,38 +74,44 @@ const TimeAttackMode = () => {
           タイムアタック
         </h1>
 
+        {/* スタート画面 */}
         {!isPlaying && !isGameOver && (
-          <div className="flex justify-center mb-6">
-            <Image
-              src="/images/fire_ganzi.png"
-              alt="タイムアタック"
-              width={300}
-              height={300}
-              className="animate-pluse"
-              priority
-            />
-          </div>
+          <>
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/fire_ganzi.png"
+                alt="タイムアタック"
+                width={250}
+                height={250}
+                priority
+              />
+            </div>
+            <div className="text-center">
+              <p className="text-2xl mb-2 text-gray-900">20秒間で何問解けるかな？</p>
+              <p className="text-3xl mb-4 text-blue-600">
+                最高記録: {highScore}問
+              </p>
+              <button
+                onClick={startGame}
+                className="bg-green-500 text-white p-3 rounded text-xl hover:bg-green-600 transition-colors"
+              >
+                スタート
+              </button>
+            </div>
+          </>
         )}
 
-        {!isPlaying && !isGameOver && (
-          <div className="text-center">
-            <p className="text-xl mb-4">20秒間で何問解けるかな？</p>
-            <button
-              onClick={startGame}
-              className="bg-green-500 text-white p-3 rounded text-xl hover:bg-green-600 transition-colors"
-            >
-              スタート
-            </button>
-          </div>
-        )}
-
+        {/* プレイ中の画面 */}
         {isPlaying && (
           <>
             <div className="flex justify-between items-center mb-4">
-              <p className="text-2xl text-gray-700">残り時間: {timeLeft}秒</p>
-              <p className="text-2xl text-blue-800">スコア: {score}</p>
+              <p className="text-2xl text-gray-900">残り時間: {timeLeft}秒</p>
+              <div className="text-right">
+                <p className="text-2xl text-blue-800">スコア: {score}</p>
+                <p className="text-sm text-blue-600">最高記録: {highScore}問</p>
+              </div>
             </div>
-            <p className="text-4xl font-bold mb-4 text-center text-gray-700">
+            <p className="text-4xl font-bold mb-4 text-center text-gray-900">
               {problem} = ?
             </p>
 
@@ -106,22 +125,31 @@ const TimeAttackMode = () => {
           </>
         )}
 
+        {/* ゲーム終了画面 */}
         {isGameOver && (
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4 text-blue-800">
+            <h2 className="text-5xl font-bold mb-4 text-blue-800">
               タイムアップ！
             </h2>
             <div className="flex justify-center mb-6">
               <Image
                 src="/images/fire_ganzi.png"
                 alt="タイムアタック"
-                width={300}
-                height={300}
-                className="animate-pluse"
+                width={250}
+                height={250}
                 priority
               />
             </div>
-            <p className="text-xl mb-4 font-bold">20秒間で {score}問 正解！</p>
+            <p className="text-xl mb-2 font-bold text-gray-900">20秒間で {score}問 正解！</p>
+            {score > highScore ? (
+              <p className="text-lg mb-4 text-red-500 font-bold">
+                新記録達成！ 🎉
+              </p>
+            ) : (
+              <p className="text-3xl mb-4 text-blue-600">
+                最高記録: {highScore}問
+              </p>
+            )}
             <button
               onClick={startGame}
               className="bg-green-500 text-white p-3 rounded text-xl hover:bg-green-600 transition-colors"
