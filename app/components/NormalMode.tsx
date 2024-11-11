@@ -87,7 +87,7 @@ const NormalMode = () => {
                 priority
               />
             </div>
-            <p className="text-xl mb-4 font-bold">
+            <p className="text-xl mb-4 font-bold text-gray-900">
               20問中 {score}問 正解！
               <br />
               正答率: {Math.round((score / TOTAL_QUESTIONS) * 100)}%
